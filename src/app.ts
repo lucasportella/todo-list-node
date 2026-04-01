@@ -2,6 +2,8 @@ import express from 'express'
 import httpStatus from 'http-status-codes'
 import cors from 'cors'
 import { connectDatabase } from './server.js'
+import { migrate } from '@database/migrate.js'
+import { seed } from '@database/seed.js'
 
 export const app = express()
 app.use(express.json())
@@ -16,6 +18,10 @@ const startServer = () => {
 const main = async () => {
   try {
     await connectDatabase();
+    await migrate()
+    if (process.env.NODE_ENV === 'dev') {
+      await seed()
+    }
     startServer();
   } catch (e) {
     console.error(e);
