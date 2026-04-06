@@ -21,7 +21,8 @@ export class UserController {
   }
 
   async findByEmail(req: Request, res: Response): Promise<void> {
-    const user = await this.userService.findByEmail(req.body);
+    const { email } = req.body || ''
+    const user = await this.userService.findByEmail(email as string);
     res.status(StatusCodes.OK).json(user);
   }
 

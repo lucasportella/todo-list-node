@@ -10,12 +10,12 @@ export function userRoutes() {
   const service = new UserService(repository);
   const controller = new UserController(service);
 
-  router.get("/", (req, res) => controller.findAll(req, res));
+  router.get("/all", (req, res) => controller.findAll(req, res));
   router.get("/:id", (req, res) => controller.findById(req, res));
-  router.get("/:email", (req, res) => controller.findByEmail(req, res));
+  router.post("/email", (req, res) => controller.findByEmail(req, res));
   router.post("/", (req, res) => controller.createUser(req, res));
   router.put("/", (req, res) => controller.updateUser(req, res));
-  router.delete("/", (req, res) => controller.deleteUser(req, res));
+  router.delete("/:id", (req, res) => controller.deleteUser(req, res));
 
   return router;
 }
