@@ -1,28 +1,43 @@
 import { pool } from "@database/connection.js";
-import type { NewUser, User } from "@models/User.js";
-import type { RowDataPacket } from "mysql2";
+import type { NewUser, PublicUser, UpdateUser } from "@models/User.js";
+import { type ResultSetHeader, type RowDataPacket } from "mysql2";
 
-interface UserRow extends RowDataPacket, User { } // empty {} to combine both types
+export interface PublicUserRow extends RowDataPacket, PublicUser { } // empty {} to combine both types
 
 
 export class UserRepository {
-  async findAll(): Promise<User[]> {
-    const [rows] = await pool.execute<UserRow[]>('SELECT * FROM users')
+
+  async findAll(): Promise<PublicUser[]> {
+    const [rows] = await pool.execute<PublicUserRow[]>('SELECT id, name, email FROM users')
     return rows;
   }
 
-  async findById(id: string): Promise<User | null> {
-    const [rows] = await pool.execute<UserRow[]>("SELECT * From users WHERE id = ? ", [id])
+  async findById(id: string): Promise<PublicUser | null> {
+    const [rows] = await pool.execute<PublicUserRow[]>("SELECT id, name, email From users WHERE id = ?", [id])
     return rows[0] ?? null
   }
 
-  async findByEmail(email: string): Promise<User | null> {
-    const [rows] = await pool.execute<UserRow[]>("SELECT * FROM users WHERE email = ?", [email])
+  async findByEmail(email: string): Promise<PublicUser | null> {
+    const [rows] = await pool.execute<PublicUserRow[]>("SELECT id, name, email FROM users WHERE email = ?", [email])
     return rows[0] ?? null;
   }
 
-  async createUser(newUser: NewUser): Promise<User | null> {
-    const [rows] = await pool.execute<UserRow[]>("INSERT INTO users (? ? ?)", [newUser.name, newUser.email, newUser.hashed_password, "user"]);
+  async createUser(newUser: NewUser): Promise<PublicUser | null> {
+    const [result] = await pool.execute<ResultSetHeader>("INSERT INTO users (name, email, hashed_password, role) VALUES(?, ?, ?, ?)", [newUser.name, newUser.email, newUser.hashed_password, "user"]);
+
+    const [rows] = await pool.execute<PublicUserRow[]>("SELECT id, name, email FROM users WHERE id = ?", [result.insertId])
     return rows[0] ?? null
+  }
+
+  async updateUser(user: UpdateUser): Promise<PublicUser | null> {
+    await pool.execute<ResultSetHeader>("UPDATE users SET name = ?, email = ?, hashed_password = ? WHERE id = ?", [user.name, user.email, user.hashed_password, user.id]);
+
+    const [rows] = await pool.execute<PublicUserRow[]>("SELECT id, name, email FROM users WHERE id = ?", [user.id])
+    return rows[0] ?? null;
+  }
+
+  async deleteUser(id: string): Promise<boolean> {
+    const [result] = await pool.execute<ResultSetHeader>("DELETE from users WHERE id = ?", [id])
+    return result.affectedRows > 0
   }
 }

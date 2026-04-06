@@ -14,6 +14,19 @@ export interface User {
   role: string;
 }
 
+export interface PublicUser {
+  id: string;
+  name: string;
+  email: string;
+}
+
+export interface UpdateUser {
+  id: number;
+  name: string;
+  email: string;
+  hashed_password: string;
+}
+
 export interface UserResponse {
   id: number;
   name: string;
