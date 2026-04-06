@@ -4,11 +4,13 @@ import { connectDatabase } from './server.js'
 import { migrate } from '@database/migrate.js'
 import { seed } from '@database/seed.js'
 import { userRoutes } from '@routes/userRoutes.js'
+import { errorHandler } from './middlewares/error.js'
 
 export const app = express()
 app.use(express.json())
 app.use(cors())
 app.use("/users", userRoutes())
+app.use(errorHandler)
 
 const startServer = () => {
   app.listen(3000, () => {
