@@ -10,7 +10,7 @@ export class UserController {
   }
 
   async findAll(req: Request, res: Response): Promise<void> {
-    const users = await this.userService.findall();
+    const users = await this.userService.findAll();
     res.status(StatusCodes.OK).json(users)
   }
 

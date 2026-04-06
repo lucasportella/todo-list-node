@@ -7,7 +7,7 @@ export class UserService {
   constructor(userRepository: UserRepository) {
     this.userRepository = userRepository;
   }
-  async findall(): Promise<PublicUser[]> {
+  async findAll(): Promise<PublicUser[]> {
     const result = await this.userRepository.findAll();
     return result;
   }
