@@ -12,7 +12,7 @@ export class UserService {
     return result;
   }
 
-  async findById(id: string): Promise<PublicUser | null> {
+  async findById(id: number): Promise<PublicUser | null> {
     const result = await this.userRepository.findById(id);
     return result;
   }

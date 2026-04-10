@@ -12,7 +12,7 @@ export class UserRepository {
     return rows;
   }
 
-  async findById(id: string): Promise<PublicUser | null> {
+  async findById(id: number): Promise<PublicUser | null> {
     const [rows] = await pool.execute<PublicUserRow[]>("SELECT id, name, email From users WHERE id = ?", [id])
     return rows[0] ?? null
   }

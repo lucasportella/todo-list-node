@@ -6,7 +6,17 @@ import { seed } from '@database/seed.js'
 import { userRoutes } from '@routes/userRoutes.js'
 import { errorHandler } from './middlewares/error.js'
 
+//TODO:
+// docker
+// zod
+// password hashing and verification
+// eslint
+// unit tests
+// logging
+// rate limit
+
 export const app = express()
+
 app.use(express.json())
 app.use(cors())
 app.use("/users", userRoutes())
