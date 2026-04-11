@@ -5,6 +5,7 @@ import { migrate } from '@database/migrate.js'
 import { seed } from '@database/seed.js'
 import { userRoutes } from '@routes/userRoutes.js'
 import { errorHandler } from './middlewares/error.js'
+import { todosRoutes } from '@routes/todosRoutes.js'
 
 //TODO:
 // docker
@@ -20,6 +21,7 @@ export const app = express()
 app.use(express.json())
 app.use(cors())
 app.use("/users", userRoutes())
+app.use("/:userId/todos", todosRoutes())
 app.use(errorHandler)
 
 const startServer = () => {
