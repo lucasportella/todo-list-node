@@ -13,8 +13,8 @@ export const todosRoutes = () => {
   router.get("/", async (req, res) => await todosController.findAll(req, res))
   router.get("/:id", async (req, res) => await todosController.findById(req, res))
   router.post("/create", async (req, res) => await todosController.createTodo(req, res))
-  router.put(":id", async (req, res) => await todosController.updateTodo(req, res))
-  router.delete(":id", async (req, res) => await todosController.deleteTodo(req, res))
+  router.put("/:id", async (req, res) => await todosController.updateTodo(req, res))
+  router.delete("/:id", async (req, res) => await todosController.deleteTodo(req, res))
 
   return router;
 }

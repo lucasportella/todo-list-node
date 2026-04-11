@@ -22,7 +22,7 @@ export class TodosRepository {
   }
 
   async updateTodo(todo: UpdateTodo): Promise<Todo | null> {
-    await pool.execute<ResultSetHeader>("UPDATE todos SET (title, description, status) VALUES (?, ?, ?, ?) WHERE userId = ? AND id = ?", [todo.title, todo.description || null, todo.status, todo.userId, todo.id])
+    await pool.execute<ResultSetHeader>("UPDATE todos SET title = ?, description = ?, status = ? WHERE userId = ? AND id = ?", [todo.title, todo.description ?? null, todo.status, todo.userId, todo.id])
     const updatedTodo = await this.findById(todo.userId, todo.id);
     return updatedTodo ?? null;
   }
