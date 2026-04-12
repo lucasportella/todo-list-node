@@ -1,4 +1,4 @@
-import { pool } from '@database/connection.js';
+import { pool } from '#database/connection';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

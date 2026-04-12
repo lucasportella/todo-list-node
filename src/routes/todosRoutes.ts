@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { TodosController } from "src/controllers/TodosController.js";
-import { TodosService } from "@services/TodosService.js";
-import { TodosRepository } from "@repositories/TodosRepository.js";
+import { TodosController } from "#controllers/TodosController";
+import { TodosService } from "#services/TodosService";
+import { TodosRepository } from "#repositories/TodosRepository";
 
 const router = Router({ mergeParams: true });
 

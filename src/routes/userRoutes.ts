@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { UserRepository } from '@repositories/UserRepository.js';
-import { UserService } from '@services/UserService.js';
-import { UserController } from 'src/controllers/UserController.js';
+import { UserRepository } from '#repositories/UserRepository';
+import { UserService } from '#services/UserService';
+import { UserController } from '#controllers/UserController';
 
 
 export function userRoutes() {

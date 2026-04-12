@@ -1,5 +1,5 @@
-import type { NewTodo, Todo, UpdateTodo } from "@models/Todos.js";
-import { pool } from "@database/connection.js"
+import type { NewTodo, Todo, UpdateTodo } from "#models/Todos";
+import { pool } from "#database/connection";
 import type { ResultSetHeader, RowDataPacket } from "mysql2";
 
 export interface TodoRow extends RowDataPacket, Todo { } // empty {} to combine both types

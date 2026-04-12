@@ -5,7 +5,18 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec tsx src/app.ts"
+    "dev": "nodemon --exec tsx src/app.ts",
+    "build": "tsc"
+  },
+  "imports": {
+    "#app.js": "./dist/app.js",
+    "#database/*": "./dist/database/*.js",
+    "#repositories/*": "./dist/repositories/*.js",
+    "#models/*": "./dist/models/*.js",
+    "#services/*": "./dist/services/*.js",
+    "#controllers/*": "./dist/controllers/*.js",
+    "#routes/*": "./dist/routes/*.js",
+    "#middlewares/*": "./dist/middlewares/*.js"
   },
   "author": "",
   "license": "ISC",

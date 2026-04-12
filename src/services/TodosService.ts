@@ -1,5 +1,5 @@
-import type { NewTodo, UpdateTodo } from "@models/Todos.js";
-import { TodosRepository } from "@repositories/TodosRepository.js";
+import type { NewTodo, UpdateTodo } from "#models/Todos";
+import { TodosRepository } from "#repositories/TodosRepository";
 
 
 export class TodosService {

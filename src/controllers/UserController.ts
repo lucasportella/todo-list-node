@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import type { UserService } from '@services/UserService.js';
+import type { UserService } from '#services/UserService';
 import { StatusCodes } from 'http-status-codes';
 
 export class UserController {

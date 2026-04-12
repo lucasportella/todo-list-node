@@ -1,5 +1,5 @@
-import { pool } from "@database/connection.js";
-import type { NewUser, PublicUser, UpdateUser } from "@models/User.js";
+import { pool } from "#database/connection";
+import type { NewUser, PublicUser, UpdateUser } from "#models/User";
 import { type ResultSetHeader, type RowDataPacket } from "mysql2";
 
 export interface PublicUserRow extends RowDataPacket, PublicUser { } // empty {} to combine both types

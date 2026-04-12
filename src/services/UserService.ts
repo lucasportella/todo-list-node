@@ -1,5 +1,5 @@
-import type { NewUser, PublicUser, UpdateUser } from "@models/User.js";
-import { UserRepository } from "@repositories/UserRepository.js";
+import type { NewUser, PublicUser, UpdateUser } from "#models/User";
+import { UserRepository } from "#repositories/UserRepository";
 
 export class UserService {
   private userRepository: UserRepository
