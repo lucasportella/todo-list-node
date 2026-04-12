@@ -1,6 +1,12 @@
 export interface NewUser {
   name: string
   email: string
+  password: string
+}
+
+export interface NewUserWithHashedPass {
+  name: string
+  email: string
   hashed_password: string
 }
 

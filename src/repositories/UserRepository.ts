@@ -1,5 +1,5 @@
 import { pool } from "#database/connection";
-import type { NewUser, PublicUser, UpdateUser } from "#models/User";
+import type { NewUser, NewUserWithHashedPass, PublicUser, UpdateUser } from "#models/User";
 import { type ResultSetHeader, type RowDataPacket } from "mysql2";
 
 export interface PublicUserRow extends RowDataPacket, PublicUser { } // empty {} to combine both types
@@ -22,7 +22,7 @@ export class UserRepository {
     return rows[0] ?? null;
   }
 
-  async createUser(newUser: NewUser): Promise<PublicUser | null> {
+  async createUser(newUser: NewUserWithHashedPass): Promise<PublicUser | null> {
     const [result] = await pool.execute<ResultSetHeader>("INSERT INTO users (name, email, hashed_password, role) VALUES(?, ?, ?, ?)", [newUser.name, newUser.email, newUser.hashed_password, "user"]);
 
     const [rows] = await pool.execute<PublicUserRow[]>("SELECT id, name, email FROM users WHERE id = ?", [result.insertId])

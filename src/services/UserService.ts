@@ -1,5 +1,6 @@
 import type { NewUser, PublicUser, UpdateUser } from "#models/User";
 import { UserRepository } from "#repositories/UserRepository";
+import bcrypt from "bcrypt";
 
 export class UserService {
   private userRepository: UserRepository
@@ -23,7 +24,12 @@ export class UserService {
   }
 
   async createUser(newUser: NewUser): Promise<PublicUser | null> {
-    const result = await this.userRepository.createUser(newUser);
+    const hashed_password = await bcrypt.hash(newUser.password, 10)
+    const result = await this.userRepository.createUser({
+      email: newUser.email,
+      name: newUser.name,
+      hashed_password: hashed_password,
+    });
     return result;
   }
 

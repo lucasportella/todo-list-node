@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec tsx src/app.ts",
-    "build": "tsc"
+    "dev": "nodemon --exec tsx src/server.ts",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc && cp -r src/database/migrations dist/database/migrations && cp -r src/database/seeds dist/database/seeds"
   },
   "imports": {
     "#app.js": "./dist/app.js",
@@ -22,12 +23,14 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "http-status-codes": "^2.3.0",
     "mysql2": "^3.20.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^25.5.0",
