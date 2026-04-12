@@ -1,0 +1,37 @@
+services:
+  api:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=lucas
+      - DB_PASS=mypassword
+      - DB_NAME=todo_list
+      - NODE_ENV=dev
+    depends_on:
+      db:
+        condition: 
+          service_healthy
+
+  db:
+    image: mariadb:lts-ubi9
+    ports:
+      - "3307:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: supersecret
+      MARIADB_USER: lucas
+      MARIADB_PASSWORD: mypassword
+      MARIADB_DATABASE: todo_list
+    volumes:
+    - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  db_data:
