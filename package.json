@@ -5,19 +5,43 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec tsx src/server.ts",
+    "dev": "nodemon --conditions=development --exec tsx src/server.ts",
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc && cp -r src/database/migrations dist/database/migrations && cp -r src/database/seeds dist/database/seeds"
   },
   "imports": {
-    "#app.js": "./dist/app.js",
-    "#database/*": "./dist/database/*.js",
-    "#repositories/*": "./dist/repositories/*.js",
-    "#models/*": "./dist/models/*.js",
-    "#services/*": "./dist/services/*.js",
-    "#controllers/*": "./dist/controllers/*.js",
-    "#routes/*": "./dist/routes/*.js",
-    "#middlewares/*": "./dist/middlewares/*.js"
+    "#app.js": {
+      "development": "./src/app.ts",
+      "default": "./dist/app.js"
+    },
+    "#database/*": {
+      "development": "./src/database/*.ts",
+      "default": "./dist/database/*.js"
+    },
+    "#repositories/*": {
+      "development": "./src/repositories/*.ts",
+      "default": "./dist/repositories/*.js"
+    },
+    "#models/*": {
+      "development": "./src/models/*.ts",
+      "default": "./dist/models/*.js"
+    },
+    "#services/*": {
+      "development": "./src/services/*.ts",
+      "default": "./dist/services/*.js"
+    },
+    "#controllers/*": {
+      "development": "./src/controllers/*.ts",
+      "default": "./dist/controllers/*.js"
+    },
+    "#routes/*": {
+      "development": "./src/routes/*.ts",
+      "default": "./dist/routes/*.js"
+    },
+    "#middlewares/*": {
+      "development": "./src/middlewares/*.ts",
+      "default": "./dist/middlewares/*.js"
+    }
   },
   "author": "",
   "license": "ISC",
