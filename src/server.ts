@@ -2,19 +2,22 @@ import { pool } from "#database/connection";
 import { migrate } from '#database/migrate'
 import { seed } from '#database/seed'
 import { app } from "./app.js";
+import 'dotenv/config'
 
 const connectDatabase = async () => {
   try {
     const connection = await pool.getConnection();
     connection.release();
-    console.log('Database connected!');
+    console.info('Database connected!');
   } catch (e) {
     console.error("Failed to connect to database.")
   }
 }
+
+const serverPort = process.env.SERVER_PORT
 const startServer = () => {
-  app.listen(3000, () => {
-    console.log("Server is running on port 3000")
+  app.listen(serverPort, () => {
+    console.info("Server is running on port", serverPort)
   })
 }
 

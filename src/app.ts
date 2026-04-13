@@ -5,12 +5,11 @@ import { errorHandler } from './middlewares/error.js'
 import { todosRoutes } from '#routes/todosRoutes'
 
 //TODO:
+// docker local managing
 // password hashing and verification
 // zod
 // eslint
 // unit tests
-// logging
-// rate limit
 
 export const app = express()
 

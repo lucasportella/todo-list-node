@@ -15,7 +15,7 @@ export async function seed() {
     run_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `)
-  console.log('Seed table created.');
+  console.info('Seed table created.');
 
   const [rows] = await pool.execute<any[]>(`SELECT filename FROM seeds`);
   const ran = rows.map((row) => row.filename)

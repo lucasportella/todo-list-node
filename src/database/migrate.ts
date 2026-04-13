@@ -16,7 +16,7 @@ export async function migrate() {
     )
     `)
 
-  console.log('Migration table created.')
+  console.info('Migration table created.')
 
   const [rows] = await pool.execute<any[]>(`SELECT filename from migrations`)
   const ran = rows.map((row) => row.filename);
@@ -34,6 +34,6 @@ export async function migrate() {
     await pool.execute(sql)
     await pool.execute(`INSERT INTO migrations (filename) VALUES (?)`, [file])
   }
-  console.log('Migrations run.')
+  console.info('Migrations run.')
 
 }
