@@ -14,6 +14,10 @@
       "development": "./src/app.ts",
       "default": "./dist/app.js"
     },
+    "#config.js": {
+      "development": "./src/config.ts",
+      "default": "./src/config.js"
+    },
     "#database/*": {
       "development": "./src/database/*.ts",
       "default": "./dist/database/*.js"

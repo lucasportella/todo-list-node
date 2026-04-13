@@ -1,8 +1,8 @@
+import { env } from '#config.js'
 import { pool } from "#database/connection";
 import { migrate } from '#database/migrate'
 import { seed } from '#database/seed'
-import { app } from "./app.js";
-import 'dotenv/config'
+import { app } from "#app.js";
 
 const connectDatabase = async () => {
   try {
@@ -14,7 +14,7 @@ const connectDatabase = async () => {
   }
 }
 
-const serverPort = process.env.SERVER_PORT
+const serverPort = env.SERVER_PORT
 const startServer = () => {
   app.listen(serverPort, () => {
     console.info("Server is running on port", serverPort)
@@ -25,7 +25,7 @@ const main = async () => {
   try {
     await connectDatabase();
     await migrate()
-    if (process.env.NODE_ENV === 'dev') {
+    if (env.NODE_ENV === 'dev') {
       await seed()
     }
     startServer();
