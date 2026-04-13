@@ -1,2 +1,2 @@
 INSERT IGNORE INTO users (name, email, hashed_password, role, created_at, updated_at)
-  VALUES ('Lucas', 'lucasportella@gmail.com', "senha12345", 'admin', NOW(), NOW())
+  VALUES ('Lucas', 'lucasportella@gmail.com', "$2b$10$HD/.CXjk7u1Psk5RGBmY5.Tl8inGMegKoj3eDnsc55vT26P7al3y6", 'admin', NOW(), NOW())
