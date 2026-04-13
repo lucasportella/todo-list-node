@@ -1,9 +1,10 @@
 import { pool } from "#database/connection";
-import type { NewUser, NewUserWithHashedPass, PublicUser, UpdateUser } from "#models/User";
+import type { UserLoginAuth } from "#models/Auth";
+import type { NewUserWithHashedPass, PublicUser, UpdateUser } from "#models/User";
 import { type ResultSetHeader, type RowDataPacket } from "mysql2";
 
 export interface PublicUserRow extends RowDataPacket, PublicUser { } // empty {} to combine both types
-
+export interface UserLoginAuthRow extends RowDataPacket, UserLoginAuth { }
 
 export class UserRepository {
 
