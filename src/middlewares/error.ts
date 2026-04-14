@@ -14,6 +14,7 @@ export class AppError extends Error {
 export function errorHandler(err: unknown, req: Request, res: Response, next: NextFunction) {
   if (err instanceof AppError) {
     res.status(err.statusCode).json({ message: err.message });
+    return;
   }
   if (err instanceof Error && 'code' in err && err.code === 'ER_DUP_ENTRY') {
     res.status(StatusCodes.CONFLICT).json({ message: 'Email already in use' })
