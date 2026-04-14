@@ -13,7 +13,7 @@ export class AuthService {
     this.authRepository = authRepository
   }
 
-  async login(email: string, password: string): Promise<string> {
+  async login(email: string, password: string): Promise<Record<"token", string>> {
     const user = await this.authRepository.findAuthUserByEmail(email);
     if (!user?.email || !user?.hashed_password) {
       throw new AppError("Invalid email or password.", StatusCodes.UNAUTHORIZED)
@@ -26,7 +26,7 @@ export class AuthService {
     if (!env.JWT_SECRET) {
       throw new AppError("Internal Server Error. Missing environment variable.", StatusCodes.INTERNAL_SERVER_ERROR)
     }
-    const token = jwt.sign({ email: user.email, role: user.role }, env.JWT_SECRET, { expiresIn: "2 days" })
-    return token;
+    const token = jwt.sign({ sub: user.id, role: user.role }, env.JWT_SECRET, { expiresIn: "2 days" })
+    return { token };
   }
 }

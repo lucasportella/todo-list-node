@@ -7,7 +7,7 @@ export interface UserLoginAuthRow extends RowDataPacket, UserLoginAuth { }
 
 export class AuthRepository {
   async findAuthUserByEmail(email: string): Promise<UserLoginAuth | null> {
-    const [rows] = await pool.execute<UserLoginAuthRow[]>("SELECT email, name, role, hashed_password FROM users WHERE email = ?", [email]);
+    const [rows] = await pool.execute<UserLoginAuthRow[]>("SELECT id, email, name, role, hashed_password FROM users WHERE email = ?", [email]);
     return rows[0] ?? null
   }
 
