@@ -1,8 +1,8 @@
-import { env } from '#config.js'
+import { env } from "./config.js";
 import { pool } from "#database/connection";
 import { migrate } from '#database/migrate'
 import { seed } from '#database/seed'
-import { app } from "#app.js";
+import { app } from './app.js';
 
 const connectDatabase = async () => {
   try {
@@ -14,10 +14,9 @@ const connectDatabase = async () => {
   }
 }
 
-const serverPort = env.SERVER_PORT
 const startServer = () => {
-  app.listen(serverPort, () => {
-    console.info("Server is running on port", serverPort)
+  app.listen(env.SERVER_PORT, () => {
+    console.info("Server is running on port", env.SERVER_PORT)
   })
 }
 

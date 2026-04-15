@@ -2,7 +2,7 @@ import type { Request, Response, NextFunction } from 'express'
 import { StatusCodes } from 'http-status-codes';
 import jwt, { type JwtPayload } from 'jsonwebtoken';
 import { AppError } from './error.js';
-import { env } from '#config.js';
+import { env } from '../config.js';
 import { UserRepository } from '#repositories/UserRepository';
 
 

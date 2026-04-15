@@ -7,17 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --conditions=development --exec tsx src/server.ts",
     "clean": "rm -rf dist",
-    "build": "npm run clean && tsc && cp -r src/database/migrations dist/database/migrations && cp -r src/database/seeds dist/database/seeds"
+    "build": "npm run clean && tsc"
   },
   "imports": {
-    "#app.js": {
-      "development": "./src/app.ts",
-      "default": "./dist/app.js"
-    },
-    "#config.js": {
-      "development": "./src/config.ts",
-      "default": "./src/config.js"
-    },
     "#database/*": {
       "development": "./src/database/*.ts",
       "default": "./dist/database/*.js"
