@@ -4,11 +4,9 @@ export interface NewUser {
   password: string
 }
 
-export interface NewUserWithHashedPass {
-  name: string
-  email: string
-  hashed_password: string
-}
+// remove password and add hashed one
+export type NewUserWithHashedPass = Omit<NewUser, 'password'> & { hashed_password: string }
+
 
 export interface User {
   id: number;
@@ -21,7 +19,7 @@ export interface User {
 }
 
 export interface PublicUser {
-  id: string;
+  id: number;
   name: string;
   email: string;
   role: string;
