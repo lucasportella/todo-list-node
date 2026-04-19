@@ -7,8 +7,6 @@ import { authRoutes } from '#routes/authRoutes'
 import { authHandler } from '#middlewares/auth'
 
 //TODO:
-// docker local managing
-// password hashing and verification
 // zod
 // eslint
 // unit tests
