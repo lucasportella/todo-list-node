@@ -1,4 +1,4 @@
-import type { NewUser, PublicUser, UpdateUser } from "#models/User";
+import type { NewUser, PublicUser, UpdateUser } from "#models/User"
 import { UserRepository } from "#repositories/UserRepository";
 import bcrypt from "bcrypt";
 

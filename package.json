@@ -10,6 +10,10 @@
     "build": "npm run clean && tsc"
   },
   "imports": {
+    "#root/*": {
+      "development": "./src/*",
+      "default": "./dist/*"
+    },
     "#database/*": {
       "development": "./src/database/*.ts",
       "default": "./dist/database/*.js"

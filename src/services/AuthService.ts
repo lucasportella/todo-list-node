@@ -1,7 +1,7 @@
 import { AppError } from "#middlewares/error";
 import { AuthRepository } from "#repositories/AuthRepository";
 import { StatusCodes } from "http-status-codes";
-import { env } from "../config.js";
+import { env } from "#root/config.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 

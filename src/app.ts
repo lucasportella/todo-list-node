@@ -7,7 +7,7 @@ import { authRoutes } from '#routes/authRoutes'
 import { authHandler } from '#middlewares/auth'
 
 //TODO:
-// zod
+// validation
 // eslint
 // unit tests
 
