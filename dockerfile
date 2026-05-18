@@ -12,4 +12,4 @@ RUN cp -r /app/src/database/seeds /app/dist/database/seeds
 RUN echo "==== DEBUG ====" && ls -la
 EXPOSE 3002
 
-ENTRYPOINT [ "node", "./dist/server.js" ]
+CMD [ "npm", "run", "dev" ]
